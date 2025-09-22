@@ -1,0 +1,33 @@
+{
+    "C_Cpp.intelliSenseEngine": "default",
+    "idf.espIdfPathWin": "C:\\esp\\v5.4\\esp-idf",
+    "idf.openOcdConfigs": [
+        "board/esp32s3-builtin.cfg"
+    ],
+    "idf.portWin": "COM4",
+    "idf.toolsPathWin": "C:\\.espressif",
+    "idf.flashType": "UART",
+    "files.associations": {
+        "neopixel.h": "c",
+        "nvs_flash.h": "c",
+        "string.h": "c",
+        "esp_mac.h": "c",
+        "freertos.h": "c",
+        "led_driver.h": "c",
+        "cstdint": "c",
+        "esp_log.h": "c",
+        "netbiosns.h": "c",
+        "esp_vfs_fat.h": "c",
+        "esp_netif.h": "c",
+        "complex": "c",
+        "stdio.h": "c",
+        "usb_serial_jtag.h": "c",
+        "gpio.h": "c"
+    },
+    "editor.wordWrapColumn": 80,
+    "idf.espIdfPath": "/opt/esp/idf",
+    "idf.toolsPath": "/opt/esp",
+    "idf.port": "/dev/ttyACM0",
+    "idf.pythonInstallPath": "/opt/esp/python_env/idf6.0_py3.12_env/bin/python",
+    "idf.monitorPort": "/dev/ttyACM0"
+}

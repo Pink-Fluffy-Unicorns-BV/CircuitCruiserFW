@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"neopixel.h": "c",
+			"nvs_flash.h": "c",
+			"string.h": "c",
+			"esp_mac.h": "c",
+			"freertos.h": "c",
+			"led_driver.h": "c",
+			"cstdint": "c",
+			"esp_log.h": "c",
+			"netbiosns.h": "c",
+			"esp_vfs_fat.h": "c",
+			"esp_netif.h": "c",
+			"complex": "c",
+			"stdio.h": "c"
+		}
+	}
+}

@@ -1,0 +1,3 @@
+[submodule "svd"]
+	path = svd
+	url = https://github.com/espressif/svd.git

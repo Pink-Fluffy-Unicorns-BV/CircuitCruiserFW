@@ -1,0 +1,277 @@
+/*
+ * # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+ * #                                                                         #
+ * #                              +@@+    .-++-------=*=.                    #
+ * #                             +%%@+-------------------+                   #
+ * #                            =@@+*=---------------------==                #
+ * #                         .%+-=@%*+=----------------------=*.             #
+ * #                        =%---=@=***-------------------------+.           #
+ * #                       .%----=@%#=+%=------------------------*           #
+ * #                        *+---=@**#%-#=----------+:*------------          #
+ * #                        .#+--=@%%#++++=-------+: :*-----------*          #
+ * #                           +##@%#%%%#=#=----*:..:*------------#.         #
+ * #             **%@@@@@@@#+-.                    -=------------+           #
+ * #       .*@%+.         .                       =------------==            #
+ * #    =@=.....         =@+=%%   +@   --        :*-------------             #
+ * #   @*........                 .#@@@-          +------------=:            #
+ * #   @=.......                                  -+---------------++*.      #
+ * #   *%-...-%@.                     ...         .=------------------:      #
+ * #     -@@=...                                   .+----------------#       #
+ * #        =#@%+-..                               ..+-------------=.        #
+ * #                  .:-=*#%%%@@@:                ...=----------+:  +=+:    #
+ * #                            +%                  ...+---------= .-----:   #
+ * #                           :@.                   ...++--------------+    #
+ * #                           %*                     ....+@%#-----%+        #
+ * #                          :@.                      .....+@:              #
+ * #                                                                         #
+ * # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+ * # NAME       = Web page style	                	                     #
+ * # PROJECT    = Beursgadget 2025 - Circuit-Cruiser         	             #
+ * # DATE       = 11-12-2024                        	                     #
+ * # AUTHOR     = Bas Wijnen & Jan-Cees Tjepkema       	                     #
+ * # WEBSITE    = https://pinkfluffyunicorns.nl                              #
+ * # COPYRIGHT(C) Pink Fluffy Unicorns 2025                                  #
+ * # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+ */
+
+@font-face {
+    font-family: "Corbel";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../font/corbel.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "OCR-A";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../font/OCRA.ttf") format("truetype");
+}
+
+html, body {
+    font-family: "Corbel";
+    font-weight: 400;
+    height: 100%;
+    margin: 0;
+}
+
+aside {
+    position: fixed;
+    width: 80px;
+    top: 0;
+    left: 0;
+}
+
+aside ul {
+    position: absolute;
+    height: 100px;
+    top: 50%;
+    margin: -100px 0;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    background-color: #d87dd3;
+    float: left;
+    border: 0;
+    padding: 0;
+    height: calc(100dvh - 40px);
+    min-height: 320px;
+}
+
+/* Style the buttons inside the tab */
+#controlButton svg, #luaButton svg {
+    padding-top: 12px;
+}
+
+.tab .tablinks {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    transition: 0.3s;
+    font-size: 12px;
+    width: 80px;
+    height: 80px;
+    color: white;
+    text-align: center;
+}
+
+.buttonContainer {
+    height: calc(100dvh - 180px);
+    min-height: calc((3 * 80px) + 30px);
+    margin-top: 60px;
+    position: relative;
+}
+
+/* Change background color of buttons on hover */
+.tab .tablinks:hover {
+    background-color: #b21860 !important;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    position: fixed;
+    left: 80px;
+    top: 50px;
+    bottom: 40px;
+    right: 0px;
+    padding: 12px 12px 12px 12px;
+    box-sizing: border-box;
+    border-top: none;
+    overflow-y: auto;
+}
+
+/* Highlight selected tab. */
+#controlRadio:checked ~ aside .tablinks#controlButton,
+#luaRadio:checked ~ aside .tablinks#luaButton,
+#filesRadio:checked ~ aside .tablinks#filesButton {
+    background-color: #ac527c;
+}
+
+/* Show tab content that is selected. */
+#controlRadio:checked ~ .content .tabcontent#control,
+#luaRadio:checked ~ .content .tabcontent#lua,
+#filesRadio:checked ~ .content .tabcontent#files {
+    display: block;
+}
+
+#control {
+    /* No padding above joysticks */
+    padding-top: 0px;
+}
+
+.disable-scroll {
+    overflow-y: hidden;
+}
+
+.spacer {
+    flex-grow: 1;
+}
+
+#joyContainer, #luaInputs {
+    display: flex;
+}
+
+#joyX, #JoyY {
+    text-align: center;
+    width: 250px;
+    height: 250px;
+    bottom: 60px;
+}
+
+.table {
+    padding: 10px;
+    margin: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+.header {
+    position: fixed;
+    width: calc(100% - 80px);
+    left: 80px;
+    top: 0px;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    font-size: 10px;
+}
+
+.connected .header, .connected footer {
+    background: #d87dd3;
+}
+
+.disconnected .header, .disconnected footer {
+    background: #ff0000;
+}
+
+textarea {
+    width: 99%;
+    min-height: 250px;
+    font-family: OCR-A;
+}
+
+.debug {
+    width: 99%;
+    font-family: OCR-A;
+}
+
+.debugTxtBox {
+    font-family: OCR-A;
+    display: block;
+    float: left;
+    margin-right: 6px;
+    height: 32px;
+    width: 82%;
+}
+
+.fm_buttonClass {
+    background-color: white;
+    padding: 3px;
+    border: 1px  outset gray;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.fm_buttonClass:hover {
+    background-color: #d87dd3;
+}
+
+.fm_buttonClass:active {
+    /* background-color: #ac527c; */
+    /* border: 1px inset gray; */
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
+}
+.debugBtnCls {
+    font-family: OCR-A;
+    display: block;
+    height: 38px;
+    padding: 5px;
+}
+
+.footerFiller{
+    position: absolute;
+    
+    bottom: 0;
+    height: 20px;   
+}
+
+.content {
+    flex: 1;
+}
+
+.editFileClass{
+    font-family: OCR-A;
+    border: dotted 1px;
+    height: 80%;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 20px;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* padding: 10px; */
+    font-size: 12px;
+    text-align: center;
+    color: white;
+}
+
+@supports (-webkit-text-size-adjust: auto) and (not (-ms-ime-align: auto)) and (not (-moz-appearance: none)) {
+    .buttonContainer {
+        height: calc(100dvh - 180px);
+    }
+}
