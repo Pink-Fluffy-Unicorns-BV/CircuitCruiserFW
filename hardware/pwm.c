@@ -105,17 +105,25 @@ bool pwm_event(Event *event)
 	int on = event->i[2];
 	event_free(event);
 
-	if (channel_config[channel].gpio_num == pin &&
-		channel_config[channel].duty == on) {
+	if (channel_config[channel].gpio_num >= 0) {
+		// PWM already active.
+		if (pin < 0) {
+			ledc_stop(LEDC_LOW_SPEED_MODE, channel, 0);
+			gpio_reset_pin(channel_config[channel].gpio_num);
+			channel_config[channel].gpio_num = -1;
+			return true;
+		}
+		// Change frequency
+
+		ledc_set_duty(LEDC_LOW_SPEED_MODE, channel, on);
+		ledc_update_duty(LEDC_LOW_SPEED_MODE, channel);
 		return true;
 	}
 
-	if (channel_config[channel].gpio_num >= 0) {
+	// PWM not active yet.
+	if (pin < 0) {
 		ledc_stop(LEDC_LOW_SPEED_MODE, channel, 0);
 		gpio_reset_pin(channel_config[channel].gpio_num);
-	}
-
-	if (pin < 0) {
 		channel_config[channel].gpio_num = -1;
 		return true;
 	}
