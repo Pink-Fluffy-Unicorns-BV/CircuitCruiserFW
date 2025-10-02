@@ -274,13 +274,6 @@ if not disable_color_sensor then
     event.send {I2C_WRITE, 0x27010100 | I2C_DEV, 0x05}  -- Large changes.
 end
 
--- Launch a separate task. This runs the file /lua/demo.lua .
-event.launch('demo.lua')
--- The above is asynchronous, so we need to wait for it to complete.
--- The MY_EVENT variable is a global and can be used to send this task a
--- wake up signal. If demo.lua does not do that, the next line will time out.
-event.wait(5000) -- 5 seconds is more than enough.
-
 -- Set LEDs for driving.
 function reset_LEDs()
     for i = 0, 5 do
@@ -291,6 +284,15 @@ function reset_LEDs()
     end
 end
 reset_LEDs()
+
+-- Launch a separate task. This runs the file /lua/demo.lua .
+-- Disabled because it makes no sense while the 5V is off.
+-- Kept in here as an example.
+--event.launch('demo.lua')
+-- The above is asynchronous, so we need to wait for it to complete.
+-- The MY_EVENT variable is a global and can be used to send this task a
+-- wake up signal. If demo.lua does not do that, the next line will time out.
+--event.wait(5000) -- 5 seconds is more than enough.
 
 PIN_5V_CHANGE = event.new("pin_5v", {"pin"}, {}, {})
 event.claim(PIN_5V_CHANGE, true)

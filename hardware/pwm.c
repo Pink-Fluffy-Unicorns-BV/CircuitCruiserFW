@@ -48,6 +48,7 @@ static ledc_channel_config_t channel_config[LEDC_CHANNEL_MAX];
 
 void pwm_init(QueueHandle_t queue)
 {
+	ledc_fade_func_install(0);
 	// configure timers.
 
 	// Use a separate higher frequency timer for the motor.
@@ -115,8 +116,7 @@ bool pwm_event(Event *event)
 		}
 		// Change frequency
 
-		ledc_set_duty(LEDC_LOW_SPEED_MODE, channel, on);
-		ledc_update_duty(LEDC_LOW_SPEED_MODE, channel);
+		ledc_set_duty_and_update(LEDC_LOW_SPEED_MODE, channel, on, 0);
 		return true;
 	}
 

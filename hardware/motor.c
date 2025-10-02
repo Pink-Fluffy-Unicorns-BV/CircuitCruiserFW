@@ -193,8 +193,14 @@ void motor_task(void * /*args*/)
 				step = on_time;
 		}
 
-		if (step == 0)
-			continue;
+		if (on_time * (on_time + step) <= 0 && on_time != 0) {
+			// Direction changed; disable pwm.
+			pwm_active = false;
+			event1.eventcode = SET_PWM;
+			event1.i[0] = 0;
+			event1.i[1] = -1;
+			while (!event_send(&event1)) {}
+		}
 
 		on_time += step;
 
@@ -231,7 +237,7 @@ void motor_task(void * /*args*/)
 				event1.eventcode = SET_PWM;
 				event1.i[0] = 0;
 				event1.i[1] = -1;
-				event_send(&event1);
+				while (!event_send(&event1)) {}
 			}
 
 			event1.eventcode = SET_PIN;
@@ -242,7 +248,7 @@ void motor_task(void * /*args*/)
 			event2.i[0] = PIN2;
 			event2.i[1] = GPIO_HIGH;
 		}
-		event_send(&event1);
-		event_send(&event2);
+		while (!event_send(&event1)) {}
+		while (!event_send(&event2)) {}
 	}
 }
